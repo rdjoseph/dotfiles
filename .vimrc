@@ -3,6 +3,19 @@
 "Standard of living settings- relative line number with objective line number on current line, syntax highlighting
 :set rnu nu 
 syntax on
+"Make tabs work correctly 
+"Tab now inserts 4 spaces, effectively
+set tabstop=8
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
+
+"Make control-HJKL remap to window controls 
+nnoremap <C-h> <C-w>h 
+nnoremap <C-j> <C-w>j 
+nnoremap <C-k> <C-w>k 
+nnoremap <C-l> <C-w>l 
 
 " Make vim use the system clipboard 
 set clipboard=unnamed
