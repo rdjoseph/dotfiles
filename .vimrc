@@ -1,5 +1,4 @@
 "rdjoseph .vimrc 
-
 "Standard of living settings- relative line number with objective line number on current line, syntax highlighting
 :set rnu nu 
 syntax on
@@ -22,8 +21,9 @@ set clipboard=unnamed
 set clipboard=unnamedplus
 
 "Remap CAPSLOCK to ESC. This is done in bashrc because it requires a registry hack. But if you're pulling remotely and just want your CAPSLOCK to work as escape in just vim, uncomment the two below lines: 
-"au VimEnter * :silent !xmodmap -e 'clear Lock' -e 'keycode 0x42=Escape'
-"au VimLeave * :silent !xmodmap -e 'clear Lock' -e 'keycode 0x42=CapsLock' 
+"au VimEnter * :silent !setxkbmap -option caps:escape
+"au VimLeave * :silent !setxkbmap -option #as a further note, just running plain -option resets all key mappings
+
 
 " Fuzzy finding- :find something<TAB> can yield something.r even if its down a directory 
 set path +=**
@@ -34,8 +34,7 @@ set wildmenu
 " File browsing with netrw (preinstalled plugin, comes with vanilla vim
 " :edit dir to open the browser 
 let g:netrw_banner=0 "disable annoying banner
-let g:netrw_browse_split=4 "open in prior window
-let g:netrw_altv=1 "open splits to right
+let g:netrw_browse_split=4 "open in prior window let g:netrw_altv=1 "open splits to right
 let g:netrw_liststyle=3 "tree view 
 let g:netrw_list_hide=netrw_gitignore#Hide() "Hide the .git folders
 let g:netrw_list_hide.='.\(^\|\s\s\)\zs\.\S\+' "TODO: figure out what this actually does. Told to use it by a v clever vim guru
