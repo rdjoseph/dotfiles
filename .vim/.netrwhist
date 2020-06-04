@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/rdj/Documents/CS202/cs202-assignments'
+let g:netrw_dirhist_2='/home/rdj/Documents/CS202/cs202-assignments/a2'
+let g:netrw_dirhist_3='/home/rdj/Documents/CS202/ry_finished_a1'
+let g:netrw_dirhist_4='/home/rdj/Documents/CS224'
+let g:netrw_dirhist_5='/home/rdj/Documents/CS224/progHW2'
+let g:netrw_dirhist_6='/home/rdj/Documents/CS224/progHW3'
+let g:netrw_dirhist_7='/home/rdj/Documents/CS202/cs202-assignments/a6/tests'
+let g:netrw_dirhist_8='/home/rdj/Projects/fileShare'

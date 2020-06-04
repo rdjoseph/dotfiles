@@ -39,25 +39,6 @@ alias fixsound="pulseaudio -k && sudo alsa force-reload > /dev/null 2>&1 && echo
 #Cool weather output to terminal
 alias weather="curl v2.wttr.in"
 
-
-#C lang tooling stuff 
-cc(){
-    if [[ $1 == *.c ]]; then 
-	    echo "Please do not include file extensions. Compilation & run aborted.\n"
-    else
-	    rm $1 > /dev/null 2>&1 #Redirects any error output to null so we don't see it  
-	    gcc -Wall $1.c -o $1 
-    fi 
-}
-
-crun(){
-    cc $1
-    ./$1
-}
-
-cdebug(){
-    cc $1
-    gbd ./$1
-}
-
+#Puts a linebreak in the terminal. If passed a character, it uses that character to make the linebreak. Defaults to --
+hr() { printf '%0*d' $(tput cols) | tr 0 ${1:-_};} #couresy of climagic@twitter.com
 
