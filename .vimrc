@@ -21,6 +21,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k 
 nnoremap <C-l> <C-w>l 
 
+"Keyboard shortcuts for working with buffers
+"You can tell these were added after I started learning EMACs
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-l> :ls<CR> 
+
 "Make vim use the system clipboard 
 set clipboard=unnamed
 set clipboard=unnamedplus
@@ -28,8 +34,9 @@ if has("gui running")
 	set guifont=Ubuntu\ Mono\ 11
 endif 
 
-"Remap CAPSLOCK to ESC. This is done in bashrc because it requires a registry hack. But if you're pulling remotely and just want your CAPSLOCK to work as escape in just vim, uncomment the two below lines: 
-"au VimEnter * :silent !setxkbmap -option caps:escape
+"Key remappings. This is done in bashrc because it requires a registry hack. But if you're pairing/just want them to work in vim, uncomment the following lines and the remappings will set themselves up and tear down whenever you enter/leave vim
+"au VimEnter * :silent !setxkbmap -option caps:escape "esc -> caps
+"au VimEnter * :silent !setxkbmap -option altwin:ctrl_alt_win "ctrl->alt, alt->win, win->ctrl 
 "au VimLeave * :silent !setxkbmap -option #as a further note, just running plain -option resets all key mappings
 
 "?Remap '%%' to escape in normal mode. For use in ex's norm commands
@@ -38,14 +45,6 @@ inoremap %% <ESC>
 "File finding
 set path +=** "Fuzzy finding- :find something<TAB> can yield something.r even if its down a directory 
 set wildmenu " Display all matching files when we tab complete- :find utils* will yield all matches. <Tab> forward and <S-Tab> back
-
-" File browsing with netrw (preinstalled plugin, comes with vanilla vim
-" :edit dir to open the browser 
-let g:netrw_banner=0 "disable annoying banner
-let g:netrw_browse_split=4 "open in prior window let g:netrw_altv=1 "open splits to right
-let g:netrw_liststyle=3 "tree view 
-let g:netrw_list_hide=netrw_gitignore#Hide() "Hide the .git folders
-let g:netrw_list_hide.='.\(^\|\s\s\)\zs\.\S\+' "TODO: figure out what this actually does. Told to use it by a v clever vim guru
 
 "SNIPPETS 
 "Snippets are just expanded macros, or fast copy/paste. They allow you to paste in boilerplate with just a few strokes.
