@@ -25,7 +25,7 @@ nnoremap <C-l> <C-w>l
 "You can tell these were added after I started learning EMACs
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
-nnoremap <C-l> :ls<CR> 
+"TODO: figure out sane keychord for remapping ls 
 
 "Make vim use the system clipboard 
 set clipboard=unnamed
