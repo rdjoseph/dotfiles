@@ -1,12 +1,14 @@
 # Bash Aliases
+HISTTIME="%d/%m/%y " 
 
-#This makes my caps key an extra ESC key. This is to make VIM easier to use
-#It must be done here and not in .vimrc because it's a registry hack.
-#The if/else is just to suppress the warning for usage on remote systems 
-#setxkbmap used in favor of xmodmap bc xmodmap is deprecated and hard to use
-if type setxkbmap &> /dev/null; then
-   setxkbmap -option caps:escape
-fi 
+#These are my key remappings. Normally I just use an edited /etc/default/keyboard file, under
+#XKBOPTIONS="option1,option2", but for pulling on a new machine just uncomment these lines and load
+#if type setxkbmap &> /dev/null; then
+  #setxkbmap -option altwin:ctrl_alt_win  #Ctrl -> Alt, Alt -> Win, Ctrl -> Win
+  #setxkbmap -option caps:escape          #Set capslock as ESC, for VIM 
+#fi 
+
+
 #Makes sure sudo works correctly with aliases 
 alias sudo='sudo '  
 
@@ -41,4 +43,9 @@ alias weather="curl v2.wttr.in"
 
 #Puts a linebreak in the terminal. If passed a character, it uses that character to make the linebreak. Defaults to --
 hr() { printf '%0*d' $(tput cols) | tr 0 ${1:-_};} #couresy of climagic@twitter.com
+
+countVim() {
+    history | grep -i "${date+'%d/%m/%y'}[A-Za-z0-9 ]* vim" | grep -iv "history" | wc -l 
+}
+
 
