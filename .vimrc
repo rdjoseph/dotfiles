@@ -6,6 +6,7 @@ set belloff=all "Disable vim's beeping. Sorry VIM, you've almost deafened me try
 syntax on 
 set t_Co=256 "turn on 256 color display
 set lazyredraw "Prevents unecessary screen redraws, like during macro intermediate steps. Gets rid of that jittery feel during macro execution
+set hidden "Hides buffers instead of closing them, allowing one too switch buffers without writing them 
 
 "Make tabs work correctly 
 set expandtab     "tabs insert spaces
@@ -15,17 +16,15 @@ set softtabstop=4 "number of spaces in a tab when inserting
 set autoindent    "enter automatches indent of previous line
 set smartindent   "make autoindent react to syntax.
 
-"Make control-HJKL remap to window controls 
+"Remap control-HJKL to moving between windows
 nnoremap <C-h> <C-w>h 
 nnoremap <C-j> <C-w>j 
 nnoremap <C-k> <C-w>k 
 nnoremap <C-l> <C-w>l 
 
-"Keyboard shortcuts for working with buffers
-"You can tell these were added after I started learning EMACs
+"ctrl-N and ctrl-P to flip thru the buffer list 
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
-"TODO: figure out sane keychord for remapping ls 
 
 "Make vim use the system clipboard 
 set clipboard=unnamed
@@ -34,12 +33,14 @@ if has("gui running")
 	set guifont=Ubuntu\ Mono\ 11
 endif 
 
-"Key remappings. This is done in bashrc because it requires a registry hack. But if you're pairing/just want them to work in vim, uncomment the following lines and the remappings will set themselves up and tear down whenever you enter/leave vim
+"Key remappings. 
+"Normally, you want to edit /etc/default/keyboard and add options into the XKBOPTIONS string
+"But if you're yanking on a remote sys and can't edit that, just uncomment these lines so it'll remap/demap on enter/exit
 "au VimEnter * :silent !setxkbmap -option caps:escape "esc -> caps
 "au VimEnter * :silent !setxkbmap -option altwin:ctrl_alt_win "ctrl->alt, alt->win, win->ctrl 
 "au VimLeave * :silent !setxkbmap -option #as a further note, just running plain -option resets all key mappings
 
-"?Remap '%%' to escape in normal mode. For use in ex's norm commands
+"?Remap '%%' to escape in normal mode. For use in norm commands
 inoremap %% <ESC>
 
 "File finding
@@ -50,6 +51,12 @@ set wildmenu " Display all matching files when we tab complete- :find utils* wil
 "Snippets are just expanded macros, or fast copy/paste. They allow you to paste in boilerplate with just a few strokes.
 "The skeletons do pretty much what they say they do 
 nnoremap <leader>html :-1read $HOME/.vim/.skeleton.html<CR>2jwf>a
+
+" With much reluctance, I've begun to explore plugins...
+" A list of my current plugins: 
+"   Ale: Syntax checker 
+packloadall 
+silent! helptags ALL
 
 "This is just for fun 
 noremap <Up> :echo "Stop using arrow keys, please"<CR>
