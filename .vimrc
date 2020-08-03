@@ -2,11 +2,21 @@
 
 "Standard of living settings- 
 set rnu nu "Set relative line numbers, but display objective line number for current line 
-set belloff=all "Disable vim's beeping. Sorry VIM, you've almost deafened me trying to jam in my headphones way too many times. 
 syntax on 
 set t_Co=256 "turn on 256 color display
 set lazyredraw "Prevents unecessary screen redraws, like during macro intermediate steps. Gets rid of that jittery feel during macro execution
 set hidden "Hides buffers instead of closing them, allowing one too switch buffers without writing them 
+
+"Get vim to stop beeping at me like a pissed off cat
+"Unfortunately, there's no universal setting for this. belloff is >=Vim8, and noerrorbells doesn't work for >=Vim8, 
+"but for the occasional ssh session to a Red Hat server, noerrorbells works fine. So I just keep both. 
+if exists('belloff')
+    set belloff=all 
+endif 
+
+if exists('noerrorbells')
+    set noerrorbells "This also disables vim's beeping, and seems to work on the Red Hat remote server I use where the prev option doesn't. 
+endif
 
 "Make tabs work correctly 
 set expandtab     "tabs insert spaces
