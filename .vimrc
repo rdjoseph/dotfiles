@@ -8,8 +8,8 @@ set lazyredraw "Prevents unecessary screen redraws, like during macro intermedia
 set hidden "Hides buffers instead of closing them, allowing one too switch buffers without writing them 
 
 "Get vim to stop beeping at me like a pissed off cat
-"Unfortunately, there's no universal setting for this. belloff is >=Vim8, and noerrorbells doesn't work for >=Vim8, 
-"but for the occasional ssh session to a Red Hat server, noerrorbells works fine. So I just keep both. 
+"Unfortunately there's no universal setting for this, and some options don't exist in certain versions 
+"So this is my best attempt at quelling vim's most annoying feature
 if exists('belloff')
     set belloff=all 
 endif 
