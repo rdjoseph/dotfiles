@@ -1,3 +1,5 @@
+# export GUILE_LOAD_PATH="/home/rdj/guile-3.0.5/guile-readline"
+
 # Bash Aliases
 HISTTIME="%d/%m/%y " 
 
@@ -94,4 +96,13 @@ sunrise(){
         printf "\e[48;2;$r;$g;${b}m\n"
     done 
 }
+
+trap_exit(){
+    clear 
+    bash ~/see_you_space_cowboy.sh; sleep 5
+    exit 
+}
+
+trap trap_exit EXIT 
+
 
