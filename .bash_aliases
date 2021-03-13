@@ -1,4 +1,6 @@
 # export GUILE_LOAD_PATH="/home/rdj/guile-3.0.5/guile-readline"
+export PATH="$HOME/randscripts:$PATH" # Easier just to keep all my scatterbrained ideas in one globally accessible place. 
+export PATH="/usr/local/share:$PATH" # Easier just to keep all my scatterbrained ideas in one globally accessible place. 
 
 # Bash Aliases
 HISTTIME="%d/%m/%y " 
@@ -75,6 +77,27 @@ convmd(){
 
 
 
+# Enable VTERM to open files in the directory it's currently in 
+vterm_printf(){
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+vterm_prompt_end(){ 
+    if [ "$(hostname)" == "silk21.uvm.edu" ]; then 
+        vterm_printf "51;A$(whoami)@w3.uvm.edu:$(pwd)"
+    else
+        vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+    fi
+}
+PS1=$PS1'\[$(vterm_prompt_end)\]'
+
 #Puts a linebreak in the terminal. If passed a character, it uses that character to make the linebreak. Defaults to --
 hr() { printf '%0*d' $(tput cols) | tr 0 ${1:-_};} #couresy of climagic@twitter.com
 
@@ -87,7 +110,6 @@ please() {
         sudo "$BASH" -c "$(history -p !!)"
     fi 
 }
-
 
 sunrise(){
     p=3.14
