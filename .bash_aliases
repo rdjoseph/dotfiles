@@ -40,7 +40,6 @@ alias lm='vi $(date --date="last Friday" +"%m-%d-%Y").md'
 #(a)ll (m)inutes. Open all minutes
 alias am='vi *.md'
 
-
 #Command to fix "dummy output" issue
 #Redirect the word vomit of alsa reload into dev null. 
 alias fixsound="pulseaudio -k && sudo alsa force-reload > /dev/null 2>&1 && echo audio fixed"
@@ -62,6 +61,12 @@ epub(){
     FBReader $1 > /dev/null 2>&1 &
 }
 
+# xdg-open is the command called to open a file with your configured "default application" 
+# This just does that with less typing, and no messy visual output 
+xo(){
+    xdg-open "$1" > /dev/null 2>&1 & 
+}
+
 #dumb pandoc wrapper for turning md -> docx 
 convmd(){
     if [ -z "$2" ]; then
@@ -76,27 +81,6 @@ convmd(){
 }
 
 
-
-# Enable VTERM to open files in the directory it's currently in 
-vterm_printf(){
-    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-        # Tell tmux to pass the escape sequences through
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
-}
-vterm_prompt_end(){ 
-    if [ "$(hostname)" == "silk21.uvm.edu" ]; then 
-        vterm_printf "51;A$(whoami)@w3.uvm.edu:$(pwd)"
-    else
-        vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-    fi
-}
-PS1=$PS1'\[$(vterm_prompt_end)\]'
 
 #Puts a linebreak in the terminal. If passed a character, it uses that character to make the linebreak. Defaults to --
 hr() { printf '%0*d' $(tput cols) | tr 0 ${1:-_};} #couresy of climagic@twitter.com
@@ -119,12 +103,9 @@ sunrise(){
     done 
 }
 
-trap_exit(){
-    clear 
-    bash ~/see_you_space_cowboy.sh; sleep 5
-    exit 
+goodnight(){
+    clear
+    bash ~/see_you_space_cowboy.sh 
+    sleep 5
+    exit
 }
-
-trap trap_exit EXIT 
-
-
