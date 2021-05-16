@@ -26,11 +26,13 @@ set softtabstop=4 "number of spaces in a tab when inserting
 set autoindent    "enter automatches indent of previous line
 set smartindent   "make autoindent react to syntax.
 
+" Normal mode CTRL keychords are for meta-movement: between windows, buffers, tabs. Also controlling those things. 
 "Remap control-HJKL to moving between windows
 nnoremap <C-h> <C-w>h 
 nnoremap <C-j> <C-w>j 
 nnoremap <C-k> <C-w>k 
 nnoremap <C-l> <C-w>l 
+
 
 "ctrl-N and ctrl-P to flip thru the buffer list 
 nnoremap <C-n> :bnext<CR>
@@ -68,8 +70,14 @@ nnoremap <leader>html :-1read $HOME/.vim/.skeleton.html<CR>2jwf>a
 packloadall 
 silent! helptags ALL
 
-"This is just for fun 
 noremap <Up> :echo "Stop using arrow keys, please"<CR>
 noremap <Down>  :echo "Stop using arrow keys, please"<CR>
 noremap <Left> :echo "Stop using arrow keys, please"<CR>
 noremap <Right> :echo "Stop using arrow keys, please"<CR>
+
+set foldmethod=indent
+
+set modeline 
+set modelines=5 
+
+
